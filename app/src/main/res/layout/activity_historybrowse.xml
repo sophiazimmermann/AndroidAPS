@@ -1,26 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="info.nightscout.androidaps.historyBrowser.HistoryBrowseActivity">
+    tools:context=".activities.HistoryBrowseActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/historybrowse_noprofile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/noprofileset"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/holo_red_light"
-            android:textStyle="bold"
-            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,38 +17,52 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/historybrowse_left"
+                android:id="@+id/left"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_chevron_left_black_24dp" />
 
-            <Button
-                android:id="@+id/historybrowse_date"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/date"
+                style="@style/GrayButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Button" />
+                android:text="@string/date" />
 
             <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/historybrowse_right"
+                android:id="@+id/right"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_chevron_right_black_24dp" />
 
             <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/historybrowse_end"
+                android:id="@+id/end"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_last_page_black_24dp" />
 
-            <Button
-                android:id="@+id/historybrowse_zoom"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/zoom"
+                style="@style/GrayButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="24" />
+                android:text="24"
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="100" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,34 +71,40 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_height="300dp">
 
                 <com.jjoe64.graphview.GraphView
-                    android:id="@+id/historybrowse_bggraph"
+                    android:id="@+id/bg_graph"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent" />
 
+                <Button
+                    android:id="@+id/scale_button"
+                    android:layout_width="65dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="35dp"
+                    android:textAllCaps="false"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:padding = "0dp"
+                    android:drawableRight="@drawable/ic_arrow_drop_down_white_24dp"
+                    android:contentDescription="@string/a11y_graph_scale" />
+
                 <ImageButton
-                    android:id="@+id/overview_chartMenuButton"
-                    android:layout_width="30dp"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/chart_menu_button"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="5dp"
                     android:paddingTop="5dp"
+                    android:contentDescription="@string/chart_menu"
                     app:srcCompat="@drawable/ic_arrow_drop_down_white_24dp" />
-
-                <TextView
-                    android:id="@+id/overview_iobcalculationprogess"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:textSize="15sp" />
 
             </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/history_iobgraph"
+                android:id="@+id/secondary_graphs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
@@ -104,5 +113,4 @@
 
     </LinearLayout>
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
